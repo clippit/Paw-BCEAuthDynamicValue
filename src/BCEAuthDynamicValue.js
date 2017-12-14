@@ -72,7 +72,7 @@ class BCEAuthDynamicValue {
         const headers = request.getHeaders(false)
         const canonicalHeaders = []
 
-        headers['Host'] = /^https?\:\/\/(([^:\/?#]*)(?:\:([0-9]+))?)/.exec(request.urlBase)[2]
+        headers['Host'] = /^https?\:\/\/(([^:\/?#]*)(?:\:([0-9]+))?)/.exec(request.urlBase)[1]
 
         Object.keys(headers).forEach(key => {
             const value = this.trim(headers[key])
