@@ -10,6 +10,7 @@ module.exports = {
         filename: `${name}.js`,
         path: path.resolve(__dirname, 'build', `com.baidu.PawExtensions.${name}`)
     },
+    mode: "none",
     module: {
         rules: [
             {
@@ -19,7 +20,7 @@ module.exports = {
                     loader: 'babel-loader',
                     options: {
                         presets: [
-                            ['babel-preset-env', {
+                            ['@babel/preset-env', {
                                 targets: {
                                     browsers: ['safari >= 7']
                                 }
