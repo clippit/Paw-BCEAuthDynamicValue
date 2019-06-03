@@ -48,6 +48,9 @@ class BCEAuthDynamicValue {
             includeParameters: false
         })
         const url = urlDV.getEvaluatedString()
+        if (url === '') {
+            return '/'
+        }
         return this.normalizeString(decodeURIComponent(url)).replace(/%2F/g, '/')
     }
 
@@ -72,7 +75,9 @@ class BCEAuthDynamicValue {
         const headers = request.getHeaders(false)
         const canonicalHeaders = []
 
-        headers['Host'] = /^https?\:\/\/(([^:\/?#]*)(?:\:([0-9]+))?)/.exec(request.urlBase)[1]
+        if (!headers['Host']) {
+            headers['Host'] = /^https?\:\/\/(([^:\/?#]*)(?:\:([0-9]+))?)/.exec(request.urlBase)[1]
+        }
 
         Object.keys(headers).forEach(key => {
             const value = this.trim(headers[key])
